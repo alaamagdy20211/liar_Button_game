@@ -1,0 +1,117 @@
+body {
+    background: radial-gradient(circle, #111 20%, #000 80%);
+    font-family: "Segoe UI", sans-serif;
+    text-align: center;
+    color: white;
+}
+
+#instruction {
+    margin-top: 25px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #f1f1f1;
+}
+
+#buttonsContainer {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+button {
+    width: 150px;
+    height: 60px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.2);
+
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    background: #222;
+    color: white;
+}
+
+button:hover {
+    border-color: white;
+    box-shadow: 0 0 12px white;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 22px;
+    height: 30px;
+}
+
+#timer {
+    font-size: 26px;
+    margin-top: 8px;
+    color: #ff2e63;
+}
+
+
+.red {
+    background: linear-gradient(to bottom, #ff4b5c, #c70039);
+}
+
+.blue {
+    background: linear-gradient(to bottom, #4d96ff, #00509d);
+}
+
+.green {
+    background: linear-gradient(to bottom, #2ecc71, #1b7f4a);
+}
+
+.yellow {
+    background: linear-gradient(to bottom, #ffd93d, #d4a017);
+    color: black;
+}
+
+.purple {
+    background: linear-gradient(to bottom, #b983ff, #6a2c70);
+}
+
+/* ===== Animations ===== */
+
+.correct {
+    animation: glow 0.5s;
+    color: #2effa1;
+}
+
+.wrong {
+    animation: angry 0.4s;
+    color: #ff4b5c;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 0px #2effa1; }
+    50% { box-shadow: 0 0 15px #2effa1; }
+    100% { box-shadow: 0 0 0px #2effa1; }
+}
+
+@keyframes angry {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(-8px); }
+    60% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+/* ===== Liar Style ===== */
+
+button:nth-child(odd) {
+    transform: rotate(-1deg);
+}
+
+button:nth-child(even) {
+    transform: rotate(1deg);
+}
