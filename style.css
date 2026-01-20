@@ -10,11 +10,11 @@ body {
 
 .game-container {
   text-align: center;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  width: 350px;
+  width: 380px;
 }
 
 h1 {
@@ -28,6 +28,7 @@ h1 {
   margin-bottom: 20px;
   font-weight: bold;
   color: #444;
+  min-height: 25px;
 }
 
 .buttons-container {
@@ -35,7 +36,7 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .button {
@@ -66,6 +67,32 @@ h1 {
   background: #ffb347;
   color: white;
   font-size: 2em;
+}
+
+.quiz-container {
+  margin-bottom: 15px;
+}
+
+.question {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  min-height: 25px;
+}
+
+.answer-input {
+  padding: 8px 12px;
+  font-size: 1em;
+  width: 60%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.timer, .progress, .score {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
 }
 
 .feedback {
