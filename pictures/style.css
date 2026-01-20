@@ -1,0 +1,76 @@
+body {
+    background: radial-gradient(circle, #111 20%, #000 80%);
+    font-family: "Segoe UI", sans-serif;
+    text-align: center;
+    color: white;
+}
+
+#instruction {
+    margin-top: 25px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #f1f1f1;
+}
+
+#buttonsContainer {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+/* ===== شكل الصور كأنها أزرار ===== */
+.imageCard {
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.2);
+
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    background: #222;
+}
+
+.imageCard:hover {
+    border-color: white;
+    box-shadow: 0 0 12px white;
+    transform: translateY(-3px);
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 22px;
+    height: 30px;
+}
+
+/* ===== Animations ===== */
+
+.correct {
+    animation: glow 0.5s;
+    color: #2effa1;
+}
+
+.wrong {
+    animation: angry 0.4s;
+    color: #ff4b5c;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 0px #2effa1; }
+    50% { box-shadow: 0 0 15px #2effa1; }
+    100% { box-shadow: 0 0 0px #2effa1; }
+}
+
+@keyframes angry {
+    0% { transform: translateX(0); }
+    30% { transform: translateX(-8px); }
+    60% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
