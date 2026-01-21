@@ -143,7 +143,7 @@ function generateQuizQuestion() {
 // ========================
 // Game Types
 // ========================
-const games = ['number', 'shape', 'quiz'];
+const games = ['number', 'shape', 'quiz', 'arrows'];
 
 // ========================
 // Start Game
@@ -190,6 +190,7 @@ function startGame(type){
   if(type==='number') playNumberGame();
   else if(type==='shape') playShapeGame();
   else if(type==='quiz') playQuizGame();
+  else if(type==='arrows') playArrowsGame();
 }
 
 // ========================

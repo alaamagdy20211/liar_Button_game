@@ -69,6 +69,38 @@ h1 {
   font-size: 2em;
 }
 
+.arrow-btn {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #89f7fe, #66a6ff);
+  color: white;
+  font-size: 3em;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(102, 166, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(102, 166, 255, 0.6);
+}
+
+.arrow-btn.arrow-active {
+  background: linear-gradient(45deg, #ffb347, #ff6b6b);
+  transform: scale(1.15);
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.7);
+  border: 3px solid #fff;
+  animation: pulse-glow 0.8s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 10px 30px rgba(255, 107, 107, 0.7); }
+  50% { box-shadow: 0 10px 40px rgba(255, 107, 107, 1); }
+}
+
 .quiz-container {
   margin-bottom: 15px;
 }
