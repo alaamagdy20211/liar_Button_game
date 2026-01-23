@@ -136,8 +136,7 @@ function endGame() {
     localStorage.setItem("high-score", highScore);
     highScoreElement.textContent = `High Score: ${highScore}`;
   }
-  alert("Game Over 😢");
-  location.reload();
+  window.location.href = "../game_over_page/index.html";
 }
 
 document.addEventListener("keydown", e => {
