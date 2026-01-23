@@ -131,6 +131,7 @@ function collision(pos, arr) {
 
 function endGame() {
   clearInterval(game);
+  localStorage.setItem("snakeScore", score);
   if (score > highScore) {
     highScore = score;
     localStorage.setItem("high-score", highScore);
