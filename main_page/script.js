@@ -1,5 +1,5 @@
 const menu = document.getElementById("menu");
-const currentLevelDisplay = document.getElementById("currentLevel");
+const currentLevelDisplay = document.getElementById("current-level");
 let level = localStorage.getItem("level") || 1;
 
 currentLevelDisplay.innerText = level;
@@ -10,7 +10,8 @@ function startGame() {
 
 function newGame() {
     level = 1;
-    localStorage.setItem("level", level);
+    localStorage.setItem("current-level", level);
+    localStorage.setItem("high-score" , 0);
     startGame();
 }
 

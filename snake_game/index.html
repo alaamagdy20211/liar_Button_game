@@ -7,20 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Main game container -->
     <div class="game-container">
         <h1>Snake Game</h1>
         
-        <!-- UI placeholders for Score and Level -->
         <div class="game-info">
-            <div class="score">Score: 0</div>
+          <div class="score">Score: 0</div>
             <div class="level">Level: 1</div>
             <div class="high-score">High Score: 0</div>
         </div>
         
-        <!-- Game board (30x30 grid) -->
-        <div class="play-board"></div>
-    </div>
+         <canvas id="game" width="600" height="600"></canvas>
+         <div class="buttons">
+            <button id="pausebutton"> ⏸ Pause</button>
+            <button id="restartbutton"> Restart</button>
+         </div>
+     </div>
 
     <script src="script.js"></script>
 </body>
