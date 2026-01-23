@@ -16,5 +16,5 @@ function newGame() {
 }
 
 function showHowToPlay() {
-    window.location.href = "../howtoplay/index.html"; 
+    window.location.href = "../how_to_play_page/index.html"; 
 }
