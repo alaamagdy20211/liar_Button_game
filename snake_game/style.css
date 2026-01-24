@@ -26,7 +26,8 @@ body {
     padding: 25px;
     border-radius: 25px;
     width: 90%;
-    max-width: 650px;   
+
+    max-width: 1000px;   
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
     animation: fadeIn 0.6s ease;
 }
@@ -135,4 +136,27 @@ canvas {
   border: 3px solid #0f0;
   display: block;
   margin: 10px auto;
+
 }
+
+.legend {
+    display: flex;         
+    justify-content: center; 
+    gap: 30px;           
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 2px;   
+}
+
+
+.red { background-color: red; }
+.purple { background-color: purple; }
+.gray { background-color: gray; }

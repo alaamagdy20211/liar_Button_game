@@ -13,8 +13,11 @@ let score = 0;
 let level = 1;
 let paused = false;
 let walls = [];
-let speed = 150;
 let soundEnabled = localStorage.getItem("soundEnabled") !== "false";
+
+let speed = 150; 
+const minSpeed = 30;
+
 
 if (eatSound) eatSound.volume = 0.4;
 
@@ -26,30 +29,67 @@ function randomColor() {
   return `hsl(${Math.random() * 360}, 100%, 50%)`;
 }
 
-function getWallsByLevels(level) {
+let poisonFood = null;
+
+function checkLevelUp() {
+    if (level === 1 && score >= 10) {
+        level = 2;
+        walls = getWallsByLevels(2);
+        food = getRandomFood(); 
+    } else if (level === 2 && score >= 30) {
+        level = 3;
+        walls = getWallsByLevels(3);
+        poisonFood = getRandomPoison();
+        food = getRandomFood();
+    }
+    updateUI();
+}
+
+function getRandomPoison() {
+    let newPoison;
+    const cols = canvas.width / box;
+    const rows = canvas.height / box;
+    do {
+        newPoison = {
+        x: Math.floor(Math.random() * cols) * box,
+        y: Math.floor(Math.random() * rows) * box
+        };
+    } while (collision(newPoison, walls) || collision(newPoison, snake) || (newPoison.x === food.x && newPoison.y === food.y));
+    return newPoison;
+}
+
+function getWallsByLevels(level, currentScore) {
   let wallsArray = [];
-  // Example walls for level 2
-//   if (level === 2) {
-//     for (let i = 5; i < 15; i++) {
-//       wallsArray.push({ x: i * box, y: 10 * box });
-//     }
-//   }
-//   // Example walls for level 3
-//   else if (level === 3) {
-//     for (let i = 8; i < 20; i++) {
-//       wallsArray.push({ x: i * box, y: 5 * box });
-//       wallsArray.push({ x: i * box, y: 15 * box });
-//     }
-//   }
+  
+  if (level === 2) {
+    let wallCount = Math.floor(currentScore / 2); 
+    for (let i = 0; i < wallCount; i++) {
+      wallsArray.push({
+        x: ((i * 7) % 28 + 1) * box, 
+        y: ((i * 13) % 28 + 1) * box
+      });
+    }
+  }
+  else if (level === 3) {
+    let wallCount = Math.floor(currentScore / 1.5); 
+    for (let i = 0; i < wallCount; i++) {
+      wallsArray.push({
+        x: ((i * 9) % 28 + 1) * box,
+        y: ((i * 11) % 28 + 1) * box
+      });
+    }
+  }
   return wallsArray;
 }
 
 function getRandomFood() {
   let newFood;
+  const cols = canvas.width / box;
+  const rows = canvas.height / box;
   do {
     newFood = {
-      x: Math.floor(Math.random() * 30) * box,
-      y: Math.floor(Math.random() * 30) * box
+      x: Math.floor(Math.random() * cols) * box,
+      y: Math.floor(Math.random() * rows) * box
     };
   } while (collision(newFood, walls) || collision(newFood, snake));
   return newFood;
@@ -74,6 +114,17 @@ function startGame(selectedLevel) {
   game = setInterval(draw, speed);
 }
 
+function updateGameSpeed() {
+    let newSpeed = 150 - (level * 15) - (score * 2);
+    
+    speed = Math.max(newSpeed, minSpeed);
+
+    if (!paused) {
+        clearInterval(game);
+        game = setInterval(draw, speed);
+    }
+}
+
 function updateUI() {
   scoreElement.textContent = `Score: ${score}`;
   levelElement.textContent = `Level: ${level}`;
@@ -95,6 +146,10 @@ function draw() {
   context.fillStyle = "red";
   context.fillRect(food.x, food.y, box, box);
 
+  if (level === 3 && poisonFood) {
+    context.fillStyle = "purple"; 
+    context.fillRect(poisonFood.x, poisonFood.y, box, box);
+  }
   let headX = snake[0].x;
   let headY = snake[0].y;
 
@@ -103,17 +158,27 @@ function draw() {
   if (direction === "right") headX += box;
   if (direction === "down") headY += box;
 
+  if (snake.length > 0) snake[0].color = randomColor();
+
   if (headX === food.x && headY === food.y) {
-    score++;
-    updateUI();
-    if (soundEnabled && eatSound) {
-      eatSound.currentTime = 0;
-      eatSound.play().catch(e => console.log("Sound play failed:", e));
-    }
-    food = getRandomFood();
+  score++;
+  walls = getWallsByLevels(level, score);
+
+  if (soundEnabled && eatSound) {
+    eatSound.currentTime = 0;
+    eatSound.play().catch(() => {});
+  }
+
+  food = getRandomFood();
+  if (level === 3) poisonFood = getRandomPoison();
+
+  updateUI();
+  checkLevelUp();
+  updateGameSpeed();
   } else {
     snake.pop();
   }
+
 
   if (snake.length > 0) snake[0].color = randomColor();
 
@@ -125,6 +190,7 @@ function draw() {
     headY < 0 ||
     headX >= canvas.width ||
     headY >= canvas.height ||
+    headX===poisonFood?.x && headY===poisonFood?.y ||
     collision(newHead, snake.slice(1)) ||
     collision(newHead, walls)
   ) {
@@ -165,3 +231,4 @@ function togglePause() {
 }
 
 startGame(current_level);
+
