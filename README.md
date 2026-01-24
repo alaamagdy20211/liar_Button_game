@@ -2,19 +2,7 @@
 
 A modern, interactive Snake game built with JavaScript, HTML, and CSS. This project features multiple difficulty levels, sound effects, scoring system, and progressive obstacles.
 
-## 🎮 Game Screenshots
-
-### Main Menu
 ![Main Menu](mainPage.JPG)
-
-### Game Screen
-![Game Screen](gamePage.JPG)
-
-### How to Play Page
-![How to Play](howToPlay.JPG)
-
-### Game Over Screen
-![Game Over](gameOverPage.JPG)
 
 ## 📋 Table of Contents
 
