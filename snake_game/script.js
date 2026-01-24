@@ -5,6 +5,7 @@ const levelElement = document.querySelector(".level");
 const highScoreElement = document.querySelector(".high-score");
 const pausebtn = document.getElementById("pausebutton");
 const restartbtn = document.getElementById("restartbutton");
+const eatSound = document.getElementById("eatSound");
 
 const box = 20;
 let snake, food, direction, game;
@@ -13,6 +14,9 @@ let level = 1;
 let paused = false;
 let walls = [];
 let speed = 150;
+let soundEnabled = localStorage.getItem("soundEnabled") !== "false";
+
+if (eatSound) eatSound.volume = 0.4;
 
 let highScore = parseInt(localStorage.getItem("high-score")) || 0;
 highScoreElement.innerText = `High Score: ${highScore}`;
@@ -102,6 +106,10 @@ function draw() {
   if (headX === food.x && headY === food.y) {
     score++;
     updateUI();
+    if (soundEnabled && eatSound) {
+      eatSound.currentTime = 0;
+      eatSound.play().catch(e => console.log("Sound play failed:", e));
+    }
     food = getRandomFood();
   } else {
     snake.pop();

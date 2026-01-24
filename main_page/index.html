@@ -14,7 +14,12 @@
     <button onclick="startGame()">▶ Start Game</button>
     <button onclick="newGame()">▶ New Game</button>
     <button onclick="showHowToPlay()">❓ How To Play</button>
+    <button id="soundToggle" onclick="toggleSound()">🔊 Sound ON</button>
 </div>
+
+<audio id="bgMusic" loop>
+    <source src="sounds/background.mp3" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
 </body>
