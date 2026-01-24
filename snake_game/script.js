@@ -30,14 +30,20 @@ function randomColor() {
 }
 
 let poisonFood = null;
+restartbtn.addEventListener("click",function(){
+  location.reload();
+  scoreElement.textContent=0;
+})
 
 function checkLevelUp() {
     if (level === 1 && score >= 10) {
         level = 2;
+        localStorage.setItem("current-level",level);
         walls = getWallsByLevels(2);
         food = getRandomFood(); 
     } else if (level === 2 && score >= 30) {
         level = 3;
+        localStorage.setItem("current-level",level);
         walls = getWallsByLevels(3);
         poisonFood = getRandomPoison();
         food = getRandomFood();
@@ -223,7 +229,6 @@ document.addEventListener("keydown", e => {
 });
 
 pausebtn.onclick = togglePause;
-restartbtn.onclick = () => endGame();
 
 function togglePause() {
   paused = !paused;

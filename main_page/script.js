@@ -1,6 +1,6 @@
 const menu = document.getElementById("menu");
 const currentLevelDisplay = document.getElementById("currentLevel");
-let level = localStorage.getItem("level") || 1;
+let level = localStorage.getItem("current-level") || 1;
 
 currentLevelDisplay.innerText = level;
 
